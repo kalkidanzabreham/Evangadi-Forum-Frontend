@@ -1,10 +1,13 @@
 function formatTime() {
-  function formatTimes(time) {
-    // Add 3 hours
-    const adjustedTime = new Date(time);
-    adjustedTime.setHours(adjustedTime.getHours() + 3);
+  function formatRelativeTime(time) {
+    if (!(time instanceof Date) && typeof time !== "string") {
+      throw new Error(
+        "Invalid time format. Expected a Date object or a date string."
+      );
+    }
 
-    const seconds = Math.floor((new Date() - adjustedTime) / 1000);
+    const givenTime = new Date(time);
+    const seconds = Math.floor((new Date() - givenTime) / 1000);
     const intervals = [
       { label: "year", seconds: 31536000 },
       { label: "month", seconds: 2592000 },
@@ -22,7 +25,8 @@ function formatTime() {
     }
     return "Just now";
   }
-  return { formatTimes };
+
+  return { formatRelativeTime };
 }
 
 export default formatTime;
