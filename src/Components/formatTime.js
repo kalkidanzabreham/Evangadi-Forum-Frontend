@@ -1,5 +1,5 @@
 function formatTime() {
-  function formatRelativeTime(time) {
+  function formatTimes(time) {
     if (!(time instanceof Date) && typeof time !== "string") {
       throw new Error(
         "Invalid time format. Expected a Date object or a date string."
@@ -26,7 +26,7 @@ function formatTime() {
     return "Just now";
   }
 
-  return { formatRelativeTime };
+  return { formatTimes };
 }
 
 export default formatTime;
